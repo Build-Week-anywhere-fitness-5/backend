@@ -1,0 +1,48 @@
+exports.seed = async function (knex) {
+  await knex("classes").insert([
+    {
+      class_name: "Full Body Athlete",
+      type: "HIIT",
+      date: "2021-05-20",
+      start_time: "6:30 PM",
+      duration_mins: 30,
+      intensity: "High",
+      location: "Takoma Park",
+      current_registered: 5,
+      max_class_size: 15,
+    },
+    {
+      class_name: "Low Impact Cardio Blast",
+      type: "Cardio",
+      date: "2021-05-20",
+      start_time: "7:15 PM",
+      duration_mins: 40,
+      intensity: "Medium",
+      location: "Takoma Park",
+      current_registered: 8,
+      max_class_size: 15,
+    },
+    {
+      class_name: "Muscle Maker",
+      type: "Strength",
+      date: "2021-05-22",
+      start_time: "9:30 AM",
+      duration_mins: 30,
+      intensity: "Medium",
+      location: "Fallsgrove Park",
+      current_registered: 3,
+      max_class_size: 15,
+    },
+    {
+      class_name: "Simpler Flow",
+      type: "Yoga",
+      date: "2021-05-23",
+      start_time: "9:30 PM",
+      duration_mins: 60,
+      intensity: "Low",
+      location: "Fallsgrove Park",
+      current_registered: 9,
+      max_class_size: 15,
+    },
+  ]);
+};
