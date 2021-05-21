@@ -10,7 +10,7 @@ server.use(helmet());
 server.use(cors());
 server.use(express.json());
 
-server.use("/api/classes", classesRouter);
+server.use(classesRouter);
 server.use(welcome);
 server.use((err, req, res, next) => {
   res.status(500).json({
