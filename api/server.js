@@ -1,8 +1,8 @@
 const express = require("express");
 const helmet = require("helmet");
 const cors = require("cors");
-const classesRouter = require("./database/classes/classes-router");
-const welcome = require("./database/welcome/welcome-router");
+const classesRouter = require("../database/classes/classes-router");
+const welcome = require("../database/welcome/welcome-router");
 
 const server = express();
 
