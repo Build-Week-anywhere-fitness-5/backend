@@ -9,6 +9,15 @@ const {
 
 const router = express.Router();
 
+router.get("api/users", async (req, res, next) => {
+  try {
+    const allUsers = await Users.find();
+    res.status(200).json(allUsers);
+  } catch (err) {
+    next(err);
+  }
+});
+
 router.post("/api/auth/register", checkUsernameFree, async (req, res, next) => {
   try {
     const { username, password, role } = req.body;

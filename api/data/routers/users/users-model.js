@@ -5,6 +5,10 @@ async function add(user) {
   return findById(user_id);
 }
 
+function find() {
+  return db("users");
+}
+
 function findById(user_id) {
   return db("users as u")
     .innerJoin("roles as r", "r.role_id", "u.role_id")
@@ -21,6 +25,7 @@ function findByUsername(username) {
 
 module.exports = {
   add,
+  find,
   findById,
   findByUsername,
 };

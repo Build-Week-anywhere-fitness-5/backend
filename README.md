@@ -14,21 +14,18 @@ Send a .post() to the endpoint with the following information:<br/>
 {<br/>
 username: string, required<br/>
 password: string, required<br/>
-role: string, required<br/> (instructor or client)
 }<br/>
 You will receive a token back for authentication<br/>
 
 ### USERS
 
-| User Action | METHOD | ROUTE              | SEND TO DB                                           |
-| :---------: | :----: | ------------------ | ---------------------------------------------------- |
-|    Login    |  POST  | /api/auth/login    | {username(string) , password(string), role(string) } |
-|   Create    |  POST  | /api/auth/register | {username(string) , password(string), role(string) } |
-|    Read     |  GET   | /api/users/:id     | n/a                                                  |
-|             |
+|  CRUD  | METHOD | ROUTE              | SEND TO DB                                           |
+| :----: | :----: | ------------------ | ---------------------------------------------------- |
+| Create |  POST  | /api/auth/login    | {username(string) , password(string)                 |
+| Create |  POST  | /api/auth/register | {username(string) , password(string), role(string) } |
 
 ### Classes
 
-| User Action | METHOD | ROUTE        | SEND TO DB |
-| :---------: | :----: | ------------ | ---------- |
-|    Read     |  GET   | /api/classes | n/a        |
+| CRUD | METHOD | ROUTE        | SEND TO DB |
+| :--: | :----: | ------------ | ---------- |
+| Read |  GET   | /api/classes | n/a        |
