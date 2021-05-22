@@ -23,7 +23,7 @@ You will receive a token back for authentication<br/>
 | User Action | METHOD | ROUTE              | SEND TO DB                                           |
 | :---------: | :----: | ------------------ | ---------------------------------------------------- |
 |    Login    |  POST  | /api/auth/login    | {username(string) , password(string), role(string) } |
-|   Create    |  POST  | /api/auth/register | {username(string) , password(string), role(string)   |
+|   Create    |  POST  | /api/auth/register | {username(string) , password(string), role(string) } |
 |    Read     |  GET   | /api/users/:id     | n/a                                                  |
 |  |
 
