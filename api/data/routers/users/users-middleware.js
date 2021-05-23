@@ -2,9 +2,9 @@ const db = require("./users-model");
 
 async function checkUsernameFree(req, res, next) {
   try {
-    const user = await db.findByUsername(req.body.username).first();
+    const user = await db.findByUsername(req.body.username);
 
-    if (user.username) {
+    if (user[0].username) {
       return res
         .status(422)
         .json({ message: "This username is already taken" });
@@ -18,9 +18,9 @@ async function checkUsernameFree(req, res, next) {
 
 async function checkUsernameExists(req, res, next) {
   try {
-    const user = await db.findByUsername(req.body.username).first();
+    const user = await db.findByUsername(req.body.username);
 
-    if (!user) {
+    if (!user[0]) {
       return res.status(401).json({
         message: "Invalid Credentials",
       });
