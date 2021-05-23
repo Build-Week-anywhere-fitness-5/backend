@@ -4,7 +4,7 @@ async function checkUsernameFree(req, res, next) {
   try {
     const user = await db.findByUsername(req.body.username);
 
-    if (user[0].username) {
+    if (user.username) {
       return res
         .status(422)
         .json({ message: "This username is already taken" });
@@ -20,7 +20,7 @@ async function checkUsernameExists(req, res, next) {
   try {
     const user = await db.findByUsername(req.body.username);
 
-    if (!user[0]) {
+    if (!user) {
       return res.status(401).json({
         message: "Invalid Credentials",
       });
