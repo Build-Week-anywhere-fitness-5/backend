@@ -1,21 +1,9 @@
 exports.up = async function (knex) {
-  await knex.schema.createTable("roles", (table) => {
-    table.increments("role_id");
-    table.text("name").notNull().unique();
-  });
-
   await knex.schema.createTable("users", (table) => {
     table.increments("user_id");
     table.text("username", 200).notNull().unique();
     table.text("password", 200).notNull();
-    table
-      .integer("role_id")
-      .notNull()
-      .defaultTo(1)
-      .references("role_id")
-      .inTable("roles")
-      .onDelete("RESTRICT")
-      .onUpdate("CASCADE");
+    table.text("role").notNull();
   });
 
   await knex.schema.createTable("classes", (table) => {

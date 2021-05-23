@@ -1,31 +1,24 @@
 const db = require("../../db-config");
 
-async function add(user) {
-  const [user_id] = await db("users").insert(user);
-  return findById(user_id);
-}
-
 function find() {
   return db("users");
 }
 
-function findById(user_id) {
-  return db("users as u")
-    .innerJoin("roles as r", "r.role_id", "u.role_id")
-    .where("u.user_id", user_id)
-    .first("u.user_id", "u.username", "r.name");
+function findByUsername(username) {
+  return db("users")
+    .where("username", username)
+    .first("user_id", "username", "password", "role");
 }
 
-function findByUsername(username) {
-  return db("users as u")
-    .innerJoin("roles as r", "r.id", "u.role_id")
-    .where("u.username", username)
-    .first("u.id", "u.username", "r.name");
+async function add(user) {
+  await db("users").insert(user);
+  return db("users")
+    .where("username", user.username)
+    .first("user_id", "username", "role");
 }
 
 module.exports = {
   add,
   find,
-  findById,
   findByUsername,
 };

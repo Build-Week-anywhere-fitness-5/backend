@@ -2,14 +2,15 @@ const db = require("./users-model");
 
 async function checkUsernameFree(req, res, next) {
   try {
-    const { username } = req.body;
-    const user = await db.findByUsername({ username }).first();
+    const user = await db.findByUsername(req.body.username);
+    console.log(user);
 
-    if (user) {
-      return res.status(422).json({
-        message: "This username is already taken",
-      });
+    if (user.username) {
+      return res
+        .status(422)
+        .json({ message: "This username is already taken" });
     }
+
     next();
   } catch (err) {
     next(err);
@@ -18,8 +19,7 @@ async function checkUsernameFree(req, res, next) {
 
 async function checkUsernameExists(req, res, next) {
   try {
-    const { username } = req.body;
-    const user = await db.findByUsername({ username }).first();
+    const user = await db.findByUsername(req.body.username);
 
     if (!user) {
       return res.status(401).json({

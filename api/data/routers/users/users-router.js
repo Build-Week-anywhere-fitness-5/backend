@@ -9,7 +9,7 @@ const {
 
 const router = express.Router();
 
-router.get("api/users", async (req, res, next) => {
+router.get("/api/users", async (req, res, next) => {
   try {
     const allUsers = await Users.find();
     res.status(200).json(allUsers);
@@ -21,7 +21,6 @@ router.get("api/users", async (req, res, next) => {
 router.post("/api/auth/register", checkUsernameFree, async (req, res, next) => {
   try {
     const { username, password, role } = req.body;
-    console.log(req.body);
     const newUser = await Users.add({
       username,
       password: await bcrypt.hash(
@@ -30,7 +29,6 @@ router.post("/api/auth/register", checkUsernameFree, async (req, res, next) => {
       ),
       role,
     });
-
     res.status(201).json(newUser);
   } catch (err) {
     next(err);
@@ -39,28 +37,25 @@ router.post("/api/auth/register", checkUsernameFree, async (req, res, next) => {
 
 router.post("/api/auth/login", checkUsernameExists, async (req, res, next) => {
   try {
-    const { username, password } = req.body;
-    const user = await Users.findByUsername(username);
-
-    const passwordValid = await bcrypt.compare(password, user.password);
-
-    if (!passwordValid) {
-      return res.status(401).json({
-        message: "Invalid Credentials",
-      });
+    const dbPass = await Users.findByUsername(req.body.username);
+    const bodyPass = req.body.password;
+    const passwordValidation = await bcrypt.compare(bodyPass, dbPass.password);
+    if (passwordValidation === false) {
+      return res.status(401).json({ message: "invalid credentials" });
     }
 
     const token = jwt.sign(
       {
-        userID: user.id,
-        userRole: user.role,
+        userID: dbPass.user_id,
+        userRole: dbPass.role,
       },
       process.env.JWT_SECRET
     );
 
     res.cookie("token", token);
-    res.json({
-      message: `Welcome ${user.username}!`,
+    res.status(200).json({
+      message: `Welcome ${req.body.username}`,
+      token: token,
     });
   } catch (err) {
     next(err);
