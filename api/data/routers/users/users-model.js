@@ -7,14 +7,14 @@ function find() {
 function findByUsername(username) {
   return db("users")
     .where("username", username)
-    .first("user_id", "username", "password", "role");
+    .select("user_id", "username", "password", "role");
 }
 
 async function add(user) {
   await db("users").insert(user);
   return db("users")
     .where("username", user.username)
-    .first("user_id", "username", "role");
+    .select("user_id", "username", "role");
 }
 
 module.exports = {
