@@ -17,24 +17,6 @@ async function checkUsernameFree(req, res, next) {
   }
 }
 
-async function checkUsernameExists(req, res, next) {
-  try {
-    const allUsers = await db.find();
-    allUsers.map((user) => {
-      if (user.username !== req.body.username) {
-        return res.status(401).json({
-          message: "Invalid Credentials",
-        });
-      }
-    });
-
-    next();
-  } catch (err) {
-    next(err);
-  }
-}
-
 module.exports = {
-  checkUsernameExists,
   checkUsernameFree,
 };

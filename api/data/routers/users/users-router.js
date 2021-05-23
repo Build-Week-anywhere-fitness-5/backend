@@ -2,10 +2,7 @@ const express = require("express");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const Users = require("./users-model");
-const {
-  checkUsernameFree,
-  checkUsernameExists,
-} = require("./users-middleware");
+const { checkUsernameFree } = require("./users-middleware");
 
 const router = express.Router();
 
@@ -29,25 +26,38 @@ router.post("/api/auth/register", checkUsernameFree, async (req, res, next) => {
       ),
       role,
     });
-    res.status(201).json(newUser);
+    res.status(201).json(newUser[0]);
   } catch (err) {
     next(err);
   }
 });
 
-router.post("/api/auth/login", checkUsernameExists, async (req, res, next) => {
+router.post("/api/auth/login", async (req, res, next) => {
   try {
     const dbPass = await Users.findByUsername(req.body.username);
+    //console.log(dbPass);
     const bodyPass = req.body.password;
-    const passwordValidation = await bcrypt.compare(bodyPass, dbPass.password);
-    if (passwordValidation === false) {
-      return res.status(401).json({ message: "invalid credentials" });
+
+    if (!dbPass[0]) {
+      return res.status(401).json({
+        message: "Incorrect username",
+      });
+    }
+
+    const passwordValidation = await bcrypt.compare(
+      bodyPass,
+      dbPass[0].password
+    );
+
+    if (!passwordValidation) {
+      return res.status(401).json({ message: "Incorrect password" });
     }
 
     const token = jwt.sign(
       {
-        userID: dbPass.user_id,
-        userRole: dbPass.role,
+        username: dbPass[0].username,
+        user_id: dbPass[0].user_id,
+        successfulLogin: true,
       },
       process.env.JWT_SECRET
     );
@@ -55,6 +65,7 @@ router.post("/api/auth/login", checkUsernameExists, async (req, res, next) => {
     res.cookie("token", token);
     res.status(200).json({
       message: `Welcome ${req.body.username}`,
+      username: req.body.username,
       token: token,
     });
   } catch (err) {
