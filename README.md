@@ -1,20 +1,42 @@
 Backend for Build week ptct-anywhere-fitness-5 project <br/>
 baseURL: https://backend-ptct-anywhere-fitness.herokuapp.com/
 
+###Register Schema
 (/api/auth/register)<br/>
 Send a .post() to the endpoint with the following information.<br/>
 {<br/>
-username: string, required, unique<br/>
-password: string, required<br/>
-role: string, required<br/> (instructor or client)
-}<br/>
+Make sure you are sending data to the database as structure below:
 
+```js
+{
+"username": "Alice2001",
+"password": "testalice",
+"role": "client"
+}
+
+or
+
+{
+"username": "Marshall1999",
+"password": "testmarshall",
+"role": "instructor"
+}
+
+```
+
+###Login Schema
 (/api/auth/login)<br/>
 Send a .post() to the endpoint with the following information:<br/>
 {<br/>
-username: string, required<br/>
-password: string, required<br/>
-}<br/>
+Make sure you are sending data to the database as structure below:
+
+```js
+{
+"username": "Alice2001",
+"password": "testalice"
+}
+```
+
 You will receive a token back for authentication<br/>
 
 ### USERS
