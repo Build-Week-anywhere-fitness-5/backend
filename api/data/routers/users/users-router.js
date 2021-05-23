@@ -2,7 +2,7 @@ const express = require("express");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const Users = require("./users-model");
-const { checkUsernameFree } = require("./users-middleware");
+const { validateRegister, checkUsernameFree } = require("./users-middleware");
 
 const router = express.Router();
 
@@ -15,22 +15,27 @@ router.get("/api/users", async (req, res, next) => {
   }
 });
 
-router.post("/api/auth/register", checkUsernameFree, async (req, res, next) => {
-  try {
-    const { username, password, role } = req.body;
-    const newUser = await Users.add({
-      username,
-      password: await bcrypt.hash(
-        password,
-        parseInt(process.env.BCRYPT_TIME_COMPLEXITY)
-      ),
-      role,
-    });
-    res.status(201).json(newUser[0]);
-  } catch (err) {
-    next(err);
+router.post(
+  "/api/auth/register",
+  validateRegister,
+  checkUsernameFree,
+  async (req, res, next) => {
+    try {
+      const { username, password, role } = req.body;
+      const newUser = await Users.add({
+        username,
+        password: await bcrypt.hash(
+          password,
+          parseInt(process.env.BCRYPT_TIME_COMPLEXITY)
+        ),
+        role,
+      });
+      res.status(201).json(newUser[0]);
+    } catch (err) {
+      next(err);
+    }
   }
-});
+);
 
 router.post("/api/auth/login", async (req, res, next) => {
   try {

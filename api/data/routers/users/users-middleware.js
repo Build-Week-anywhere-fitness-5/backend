@@ -1,5 +1,14 @@
 const db = require("./users-model");
 
+function validateRegister(req, res, next) {
+  const { role } = req.body;
+
+  if (!role || role === "") {
+    return res.status(400).json({ message: "Role of user is missing" });
+  }
+  next();
+}
+
 async function checkUsernameFree(req, res, next) {
   try {
     const allUsers = await db.find();
@@ -18,5 +27,6 @@ async function checkUsernameFree(req, res, next) {
 }
 
 module.exports = {
+  validateRegister,
   checkUsernameFree,
 };
