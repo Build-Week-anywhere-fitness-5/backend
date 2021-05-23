@@ -70,7 +70,8 @@ router.post("/api/auth/login", async (req, res, next) => {
     res.cookie("token", token);
     res.status(200).json({
       message: `Welcome ${req.body.username}`,
-      username: req.body.username,
+      username: dbPass[0].username,
+      role: dbPass[0].role,
       token: token,
     });
   } catch (err) {
