@@ -1,10 +1,10 @@
 Backend for Build week ptct-anywhere-fitness-5 project <br/>
 baseURL: https://backend-ptct-anywhere-fitness.herokuapp.com/
 
-###Register Schema
+### Register Schema
+
 (/api/auth/register)<br/>
 Send a .post() to the endpoint with the following information.<br/>
-{<br/>
 Make sure you are sending data to the database as structure below:
 
 ```js
@@ -24,10 +24,10 @@ or
 
 ```
 
-###Login Schema
+### Login Schema
+
 (/api/auth/login)<br/>
 Send a .post() to the endpoint with the following information:<br/>
-{<br/>
 Make sure you are sending data to the database as structure below:
 
 ```js
