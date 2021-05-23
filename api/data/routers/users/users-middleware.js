@@ -4,7 +4,7 @@ async function checkUsernameFree(req, res, next) {
   try {
     const user = await db.findByUsername(req.body.username);
 
-    if (user.username) {
+    if (user.username === req.body.username) {
       return res
         .status(422)
         .json({ message: "This username is already taken" });
