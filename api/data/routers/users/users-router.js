@@ -45,7 +45,7 @@ router.post("/api/auth/login", async (req, res, next) => {
 
     if (!dbPass[0]) {
       return res.status(401).json({
-        message: "Incorrect username",
+        message: "Incorrect username or password",
       });
     }
 
@@ -55,13 +55,16 @@ router.post("/api/auth/login", async (req, res, next) => {
     );
 
     if (!passwordValidation) {
-      return res.status(401).json({ message: "Incorrect password" });
+      return res
+        .status(401)
+        .json({ message: "Incorrect username or password" });
     }
 
     const token = jwt.sign(
       {
+        userID: dbPass[0].user_id,
         username: dbPass[0].username,
-        user_id: dbPass[0].user_id,
+        userRole: dbPass[0].role,
         successfulLogin: true,
       },
       process.env.JWT_SECRET

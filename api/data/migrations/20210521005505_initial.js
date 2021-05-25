@@ -9,14 +9,14 @@ exports.up = async function (knex) {
   await knex.schema.createTable("classes", (table) => {
     table.increments("class_id");
     table.text("class_name").notNull().unique();
-    table.text("type").notNull();
+    table.text("type");
     table.date("date").notNull();
     table.text("start_time").notNull();
-    table.tinyint("duration_mins").notNull();
-    table.text("intensity").notNull();
+    table.tinyint("duration_mins");
+    table.text("intensity");
     table.text("location").notNull();
-    table.tinyint("current_registered").notNull();
-    table.tinyint("max_class_size").notNull();
+    table.tinyint("current_registered").defaultTo(0);
+    table.tinyint("max_class_size");
   });
 };
 
