@@ -51,7 +51,7 @@ router.put(
 );
 
 router.delete(
-  "/class/:class_id",
+  "/api/class/:class_id",
   restrict("instructor"),
   checkClassId,
   async (req, res, next) => {

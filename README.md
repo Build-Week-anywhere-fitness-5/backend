@@ -48,6 +48,10 @@ You will receive a token back for authentication<br/>
 
 ### Classes
 
-| CRUD | METHOD | ROUTE        | SEND TO DB |
-| :--: | :----: | ------------ | ---------- |
-| Read |  GET   | /api/classes | n/a        |
+|  CRUD  | METHOD | ROUTE                | SEND TO DB |                         |
+| :----: | :----: | -------------------- | ---------- | ----------------------- |
+|  Read  |  GET   | /api/classes         | n/a        | get all classes         |
+|  Read  |  GET   | /api/class/:class_id | n/a        | get one class by its id |
+| Create |  POST  | /api/classes         | n/a        | create new class        |
+| Update |  PUT   | /api/class/:class_id | n/a        | edit class information  |
+| Delete | DELETE | /api/class/:class_id | n/a        | delete class by id      |
