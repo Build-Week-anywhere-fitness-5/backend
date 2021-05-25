@@ -68,7 +68,7 @@ When you send .post or .put, please make sure you are sending data to the databa
 | ------------------ | -------------------------------------------------------------------------------------------------------- |
 | class_name         | Required, class name must be unique, sending name that already exist in the database will cause an error |
 | type               | Not required, if you don't fill it in, database will return null                                         |
-| date               | Required, must be in this format "2021-05-22"                                                            |
+| date               | Required, must be in this format "YYYY-MM-DD"                                                            |
 | start_time         | Required, can be in any format                                                                           |
 | duration_mins      | Not required, must be number only                                                                        |
 | intensity          | Not required                                                                                             |
