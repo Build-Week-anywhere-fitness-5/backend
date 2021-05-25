@@ -50,17 +50,31 @@ You will receive a token back for authentication<br/>
 
 When you send .post or .put, please make sure you are sending data to the database as structure below:
 
+```js
 {
-"class_name": "Muscle Maker", (Required, class name must be unique, sending name that already exist in the database will cause an error)
-"type": "Strength", (Not required, if you don't fill it in, database will return null)
-"date": "2021-05-22T04:00:00.000Z", (Required, must be in this format "2021-05-22")
-"start_time": "9:30 AM", (Required, can be in any format)
-"duration_mins": 30, (Not required, must be number only)
-"intensity": "Medium", (Not required)
-"location": "Fallsgrove Park", (Required)
-"current_registered": 3, (Not required, set default to 0)
-"max_class_size": 15 (Not required, must be number)
+"class_name": "Muscle Maker",
+"type": "Strength",
+"date": "2021-05-22T04:00:00.000Z",
+"start_time": "9:30 AM",
+"duration_mins": 30,
+"intensity": "Medium",
+"location": "Fallsgrove Park",
+"current_registered": 3,
+"max_class_size": 15
 }
+```
+
+| Properties         | Schema                                                                                                   |
+| ------------------ | -------------------------------------------------------------------------------------------------------- |
+| class_name         | Required, class name must be unique, sending name that already exist in the database will cause an error |
+| type               | Not required, if you don't fill it in, database will return null                                         |
+| date               | Required, must be in this format "2021-05-22"                                                            |
+| start_time         | Required, can be in any format                                                                           |
+| duration_mins      | Not required, must be number only                                                                        |
+| intensity          | Not required                                                                                             |
+| location           | Required                                                                                                 |
+| current_registered | Not required, set default to 0                                                                           |
+| max_class_size     | Not required, must be number                                                                             |
 
 ### Classes
 
