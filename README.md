@@ -48,18 +48,18 @@ You will receive a token back for authentication<br/>
 
 ### Classes Schema
 
-Make sure you are sending data to the database as structure below:
+When you send .post or .put, please make sure you are sending data to the database as structure below:
 
 {
-"class_name": "Muscle Maker", &nbsp;&nbsp;&nbsp;&nbsp; (Required, class name must be unique, sending name that already exist in the database will cause an error)
-"type": "Strength", &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp(Not required, if you don't fill it in, database will return null)
-"date": "2021-05-22T04:00:00.000Z", &nbsp;&nbsp;&nbsp;(Required, must be in this format "2021-05-22")
-"start_time": "9:30 AM", &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Required, can be in any format)
-"duration_mins": 30,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp(Not required, must be number only)
-"intensity": "Medium",&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb(Not required)
-"location": "Fallsgrove Park", &nbsp;&nbsp;&nbsp;&nbsp;(Required)
-"current_registered": 3, &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Not required, set default to 0)
-"max_class_size": 15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp(Not required, must be number)
+"class_name": "Muscle Maker", (Required, class name must be unique, sending name that already exist in the database will cause an error)
+"type": "Strength", (Not required, if you don't fill it in, database will return null)
+"date": "2021-05-22T04:00:00.000Z", (Required, must be in this format "2021-05-22")
+"start_time": "9:30 AM", (Required, can be in any format)
+"duration_mins": 30, (Not required, must be number only)
+"intensity": "Medium", (Not required)
+"location": "Fallsgrove Park", (Required)
+"current_registered": 3, (Not required, set default to 0)
+"max_class_size": 15 (Not required, must be number)
 }
 
 ### Classes
