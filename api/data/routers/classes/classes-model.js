@@ -3,20 +3,6 @@ const db = require("../../db-config");
 async function getClasses() {
   const getDate = await db("classes");
 
-  // .select(
-  //   "class_name",
-  //   "type",
-  //   "date",
-  //   "start_time",
-  //   "duration_mins",
-  //   "intensity",
-  //   "location",
-  //   "current_registered",
-  //   "max_class_size"
-  // );
-
-  // const date =
-
   return getDate.map((e) => {
     return {
       class_name: e.class_name,
@@ -32,9 +18,6 @@ async function getClasses() {
       max_class_size: e.max_class_size,
     };
   });
-  //
-  //return date;
-  //console.log(getDate);
 }
 
 async function getClassById(class_id) {
